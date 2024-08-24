@@ -1,7 +1,7 @@
 import View from './View.js';
 
 import icons from "url:../../img/icons.svg";
-import {Fraction} from 'fractional';
+// import {Fraction} from 'fractional';
                 //OR
 // import Fraction from 'fractional.Fraction';
 
@@ -66,8 +66,8 @@ class RecipeView extends View{
                     // })()    //By wrapping the arrow function in parentheses (() => {...}) and immediately invoking it with (), you ensure that the function executes and returns a value
                                                     
                                                         //OR
-                    ingred.quantity == null ? '' : new Fraction(ingred.quantity).toString()
-                    // ingred.quantity == null ? '' : ingred.quantity
+                    // ingred.quantity == null ? '' : new Fraction(ingred.quantity).toString()
+                    ingred.quantity == null ? '' : ingred.quantity
                 }</div>
                 <div class="recipe__description">
                 <span class="recipe__unit">${ingred.unit}</span>
