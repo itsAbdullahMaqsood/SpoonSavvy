@@ -2,9 +2,11 @@
   "name": "spoonsavvy",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://itsabdullahmaqsood.github.io/SpoonSavvy",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir ./dist"
+    "build": "parcel build index.html --public-url ./",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "Abdullah Maqsood",
@@ -13,10 +15,11 @@
     "@parcel/transformer-sass": "^2.12.0",
     "buffer": "^6.0.3",
     "events": "^3.3.0",
+    "gh-pages": "^6.3.0",
     "parcel": "^2.12.0",
     "prettier": "3.2.5",
     "process": "^0.11.10",
-    "sass": "^1.77.5",
+    "sass": "^1.87.0",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5"
   },

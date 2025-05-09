@@ -1,73 +1,73 @@
-import View from './View.js';
-
+import View from "./View.js";
 import icons from "url:../../img/icons.svg";
 // import {Fraction} from 'fractional';
-                //OR
+//OR
 // import Fraction from 'fractional.Fraction';
 
-class RecipeView extends View{
-    _parentElement = document.querySelector('.recipe');
-    _errorMessage = 'doesn\'t exist bruh!!!';
-    _message = '';
-    
+class RecipeView extends View {
+  _parentElement = document.querySelector(".recipe");
+  _errorMessage = "doesn't exist bruh!!!";
+  _message = "";
 
-      addHandlerRender(handler){
-        ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
-      }
+  addHandlerRender(handler) {
+    ["hashchange", "load"].forEach((ev) =>
+      window.addEventListener(ev, handler)
+    );
+  }
 
-      addHandlerUpdateServings(handler){
-            this._parentElement.addEventListener('click', (e) => {
-                const btn = e.target.closest('.btn--update-servings');
-                if(!btn) return;
-                var updateTo;
-                if(+btn.dataset.updateTo >= 1)
-                updateTo = +btn.dataset.updateTo;
-                else
-                updateTo = 1;
-                handler(updateTo);    
-            })
-      }
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--update-servings");
+      if (!btn) return;
+      var updateTo;
+      if (+btn.dataset.updateTo >= 1) updateTo = +btn.dataset.updateTo;
+      else updateTo = 1;
+      handler(updateTo);
+    });
+  }
 
-      AddHandlerAddBookmark = (handler) => {
-        this._parentElement.addEventListener('click', (e) => {
-            const btn = e.target.closest('.btn--bookmark');
-            if(!btn) return;
-            handler();
-        });
-      }
+  AddHandlerAddBookmark = (handler) => {
+    this._parentElement.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn--bookmark");
+      if (!btn) return;
+      handler();
+    });
+  };
 
-    _generateMarkup() {
-        // 2) Rendering recipe
+  _generateMarkup() {
+    // 2) Rendering recipe
 
-        const IngredArray = this._data.ingredients.map((ingred) => {  //returns a long html with all varaibles mapped out
-            return `
+    const IngredArray = this._data.ingredients
+      .map((ingred) => {
+        //returns a long html with all varaibles mapped out
+        return `
                 <li class="recipe__ingredient">
                 <svg class="recipe__icon">
                 <use href="${icons}#icon-check"></use>
                 </svg>
                 <div class="recipe__quantity">${
-                    // ingred.quantity          //comment out the function and ternary to view the raw variable
-                                                    //OR
-                    // (() => {    
-                    //     if(ingred.quantity == null) return '';
-                    //     else { 
-                    //         const integerPart = Math.floor(ingred.quantity);
-                    //         const decimalPart = ingred.quantity - integerPart;
-                    //         if(decimalPart == 0.5 ){
-                    //             return new Fraction(ingred.quantity).toString()
-                    //         }
-                    //         else if(decimalPart > 0.5){
-                    //             return new Fraction(Math.ceil(ingred.quantity)).toString();
-                    //         }
-                    //         else{       //this is for if decimal part is less or equal to zero
-                    //             return new Fraction(Math.floor(ingred.quantity)).toString()
-                    //         }
-                    //     };
-                    // })()    //By wrapping the arrow function in parentheses (() => {...}) and immediately invoking it with (), you ensure that the function executes and returns a value
-                                                    
-                                                        //OR
-                    // ingred.quantity == null ? '' : new Fraction(ingred.quantity).toString()
-                    ingred.quantity == null ? '' : ingred.quantity
+                  // ingred.quantity          //comment out the function and ternary to view the raw variable
+                  //OR
+                  // (() => {
+                  //     if(ingred.quantity == null) return '';
+                  //     else {
+                  //         const integerPart = Math.floor(ingred.quantity);
+                  //         const decimalPart = ingred.quantity - integerPart;
+                  //         if(decimalPart == 0.5 ){
+                  //             return new Fraction(ingred.quantity).toString()
+                  //         }
+                  //         else if(decimalPart > 0.5){
+                  //             return new Fraction(Math.ceil(ingred.quantity)).toString();
+                  //         }
+                  //         else{       //this is for if decimal part is less or equal to zero
+                  //             return new Fraction(Math.floor(ingred.quantity)).toString()
+                  //         }
+                  //     };
+                  // })()    //By wrapping the arrow function in parentheses (() => {...}) and immediately invoking it with (), you ensure that the function executes and returns a value
+
+                  //OR
+                  // ingred.quantity == null ? '' : new Fraction(ingred.quantity).toString()
+                  ingred.quantity == null ? "" : ingred.quantity
                 }</div>
                 <div class="recipe__description">
                 <span class="recipe__unit">${ingred.unit}</span>
@@ -75,8 +75,8 @@ class RecipeView extends View{
                 </div>
                 </li>
               `;
-            })
-            .join("");
+      })
+      .join("");
 
     return ` 
         <figure class="recipe__fig">
@@ -102,12 +102,12 @@ class RecipeView extends View{
                 <span class="recipe__info-text">servings</span>
 
                 <div class="recipe__info-buttons">
-                <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings-1}">
+                <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings - 1}">
                     <svg>
                     <use href="${icons}#icon-minus-circle"></use>
                     </svg>
                 </button>
-                <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings+1}">
+                <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings + 1}">
                     <svg>
                     <use href="${icons}#icon-plus-circle"></use>
                     </svg>
@@ -115,7 +115,7 @@ class RecipeView extends View{
                 </div>
             </div>
 
-            <div class="recipe__user-generated ${this._data.key? '' : 'hidden' }">
+            <div class="recipe__user-generated ${this._data.key ? "" : "hidden"}">
                 <svg>
                 <use href="${icons}#icon-user"></use>
                 </svg>
@@ -123,7 +123,7 @@ class RecipeView extends View{
 
             <button class="btn--round btn--bookmark">
                 <svg class="">
-                <use href="${icons}#${this._data.bookmarked? 'icon-bookmark-fill' : 'icon-bookmark'}"></use>
+                <use href="${icons}#${this._data.bookmarked ? "icon-bookmark-fill" : "icon-bookmark"}"></use>
                 </svg>
             </button>
             </div>
@@ -153,7 +153,7 @@ class RecipeView extends View{
                 </svg>
             </a>
             </div>`;
-    }
+  }
 }
 
 export default new RecipeView();
